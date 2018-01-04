@@ -1,7 +1,9 @@
+//========================================================================
+// Filter rows based on the icon selected by the user
+//========================================================================
 
-
-        function filter(state)
-        {
+function filter(state)
+{
           var x   = document.getElementsByClassName(state);
           var btn = document.getElementById(state);
 
@@ -21,27 +23,72 @@
               }
               btn.className = "btn";
           }
-        }
+}
 
-        $("#addnew").click(function(){
-              //$("#forgot").fadeIn();
-               //$("#tasks > tbody").prepend("<tr><td>"+ "1234" + "</td><td>" + "5678" + "</td><td>" +
-  //"90" + "</td><td>");
-                //$("#tasks > tbody").prepend("<tr><td>"+ "1234" + "</td><td>" + "5678" + "</td><td>" +
-  //"90" + "</td><td>");
+//========================================================================
+// Add new task
+//========================================================================
+/*
+$("#addnew").click(function(){
 
 
-                $("#tasks").find('tbody').append($('<tr class="progress"></td>')
-                              .append($('<td class="avatar"><img src="https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg"></td>'))
-                                //.attr("class", "avatar")
-                                //.append($('<img>').attr('src', "https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg")))
-                              .append($('<td>').text("Tim"))
-                              .append($('<td>').text("Group 1"))
-                              .append($('<td>').text("tim@gmail.com"))
-                              .append($('<td><a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a><a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a><a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'))
-                              
-                            );
-          });
+});
+*/
+
+
+
+    $(document).on('click', '#save', function(){
+              console.log("hi hi hi 2222");
+
+      var username = $("#task_username").val().trim();
+      var name = $("#task_name").val().trim();
+      var group = "Group 1";
+      var task = $("#task_content").val().trim();
+              
+      var newTask = {
+        username: username,
+        name: name,
+        group: group,
+        task: task,
+        state: "new"
+      };
+
+      // Send an AJAX POST-request with jQuery
+      $.post("/api/task", newTask).done(function(data) {
+        
+          data.task.length = 40;
+
+          var icon_type;
+          var state_type;
+          if (data.state === "new")
+          {
+            state_type = '<tr class="new"></td>';
+            icon_type = '<td align="center"><a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a> <a href="#" class="btn btn-warning" title="new"   ><i class="fa fa-list-alt fa-2x"   ></i></a> <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'
+          }
+          else if (data.state === "progress")
+          {
+            state_type = '<tr class="progress"></td>';
+            icon_type = '<td align="center"><a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a> <a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a> <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'
+          }
+          else
+          {
+            state_type = '<tr class="done"></td>';
+            icon_type = '<td align="center"><a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a> <a href="#" class="btn btn-success" title="done"   ><i class="fa fa-check-square fa-2x"   ></i></a> <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'
+          }
+
+          $("#tasks").find('tbody').append($(state_type)
+            .append($('<td class="avatar"><img src="https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg"></td>'))
+            //.attr("class", "avatar")
+            //.append($('<img>').attr('src', "https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg")))
+            .append($('<td>').text(data.name))
+            .append($('<td>').text(data.group))
+            .append($('<td>').text(data.email))
+            .append($('<td>').text(data.task))
+            .append($(icon_type))
+          );
+      });
+    });
+
 
 /*
         $("#delete").click(function(){
@@ -62,11 +109,11 @@
                   i = $(this).parents('tr').attr("value");
                   console.log(i)
         });
-
+/*
         $(document).on('click', '#save', function(){
                   console.log("save pressed");
         });
-
+*/
 
           /*
           $("#save").click(function(){
@@ -81,10 +128,10 @@
 
 
 
-
-
-
-    function sortTable(n) {
+//========================================================================
+// Function to sort the columns of the table
+//========================================================================
+function sortTable(n) {
 
       alert("sort this table");
       var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -139,4 +186,4 @@
           }
         }
       }
-    }
+}

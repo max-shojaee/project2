@@ -13,9 +13,11 @@ var Group = require("../models/group.js");
 module.exports = function(app) {
 
   app.get("/api", function(req, res) {
+
+    console.log("------------------> /api");
     /*
     Task.findAll({}).then(function(results) {
-      console.log("------------------> main screen"+results);
+
       res.json(results);
     });
     */
@@ -124,10 +126,11 @@ module.exports = function(app) {
     Task.create({
         username: req.body.username,
         name: req.body.name,
-        task: req.body.task,
         group: req.body.group,
-        completed: req.body.completed,
-        private: req.body.private
+        task: req.body.task,
+        state: req.body.state
+    }).then(function(results) {
+      res.json(results);
     });
   });
 

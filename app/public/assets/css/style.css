@@ -50,8 +50,7 @@ overflow:hidden;
 }
 
 
-
-
+/*******************************************************/
 
 
 .btn-success
@@ -108,12 +107,26 @@ overflow:hidden;
 
    .iga1
    {
-      background-color: #f0ad4e;
+      background-color: #f0ad4e; 
       color: white;
    }
 
    .iga2
    {
-      background-color: #FF3838;
+      /* background-color: #FF3838;m*/
+
+      background-color: lightskyblue;
       color: white;
    }
+
+.modal-header{
+     background-color:lightskyblue;
+     color: white;
+}
+
+.modal-title{
+     color: white;
+}
+.modal-content {
+    overflow:hidden;
+}

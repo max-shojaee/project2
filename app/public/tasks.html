@@ -25,10 +25,10 @@
                   id="addgroup"> CREATE GROUP <i class="fa fa-user" ></i></button>
                   <!--a href="#list" class="btn btn-default" aria-controls="list" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i>table</a-->
               </div>
-              <div class="col col-xs-5 text-center">
-                  <h1 class="panel-title" style="font-size: 24px;"><strong>Tasks List</strong></h1>
+              <div class="col col-xs-4 text-center">
+                  <h1 class="panel-title" style="font-size: 24px">Tasks List</h1>
               </div>
-              <div class="col col-xs-2 well text-right" style="padding:1px;">    
+              <div class="col col-xs-3 well text-right">    
                   <span class="label label-danger">Filter:</span>
                   <button id="new"  class="btn btn-warning" data-class="btn btn-warning" onclick="filter('new')"><i class="fa fa-list-alt" aria-hidden="true"></i></button>
                   <button id="progress" class="btn btn-info" data-class="btn btn-info" onclick="filter('progress')"><i class="fa fa-spinner fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i></button>
@@ -36,7 +36,7 @@
               </div>
               <div class="col col-xs-2 text-right ">
                 <button type="button" class="btn  btn-success" data-toggle="modal" 
-                id="addnew"> CREATE TASK <i class="fa fa-plus-square" ></i></button>
+                id="addnew" href="#newtask"> CREATE TASK <i class="fa fa-plus-square" ></i></button>
               </div>
             </div>
           </div>
@@ -46,10 +46,11 @@
                 <table class="table table-striped table-bordered table-list" id="tasks">
                 <thead>
                   <tr>
-                    <th class="avatar">Asignee</th>
+                    <th class="avatar">Owner</th>
                     <th onclick="sortTable(1)">Name</th>
                     <th onclick="sortTable(2)">Group</th>
                     <th onclick="sortTable(3)">Email</th>
+                    <th>Task</th>
                     <th><em class="fa fa-cog"></em></th>
                   </tr> 
                 </thead>
@@ -59,6 +60,7 @@
                      <td>Tim  </td>
                      <td>Group 1 </td>
                      <td>tim@gmail.com </td>
+                     <td>This is task 1 assigned to Tim.</td>
                      <td align="center">
                        <a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a>
                        <a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a>
@@ -70,6 +72,7 @@
                      <td>Jerry </td>
                      <td>Group 2</td>
                      <td>jerry@gmail.com </td>
+                     <td>This is task 2 assigned to Jerry.</td>
                      <td align="center">
                        <a href="#" class="btn btn-primary" id="edit" title="edit"    ><i class="fa fa-pencil fa-2x"></i></a>
                        <a href="#" class="btn btn-success" title="done"	 ><i class="fa fa-check-square fa-2x"></i></a>
@@ -81,6 +84,7 @@
                    <td>CJ  </td>
                    <td>Group 1</td>
                    <td>cj@gmail.com </td>
+                   <td>This is task 3 assigned to CJ.</td>
                    <td align="center">
                      <a href="#" class="btn btn-primary" id="edit" title="Edit"    ><i class="fa fa-pencil fa-2x"></i></a>
               	     <a href="#" class="btn btn-warning" title="new"><i class="fa fa-list-alt fa-2x"></i></a>
@@ -92,6 +96,7 @@
                      <td>Tim  </td>
                      <td>Group 3 </td>
                      <td>tim@gmail.com </td>
+                     <td>This is task 4 assigned to Tim.</td>
                      <td align="center">
                        <a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a>
                        <a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a>
@@ -107,12 +112,10 @@
          
          <div class="panel-footer text-center">
          		<ul class="pagination">
-      	 	  <li ><a>«</a></li>
-      		   <li class="active"><a href="#">1</a></li>
-                 <li ><a href="#">2</a></li>
-                 <li ><a href="#">3</a></li>
-      		   <li ><a>»</a></li>
-               </ul>
+        	 	  <li ><a>«</a></li>
+        		   <li class="active"><a href="#">1</a></li>
+        		   <li ><a>»</a></li>
+            </ul>
          </div>
         </div><!--END panel-table-->
       </div>
@@ -120,12 +123,12 @@
   </div>
 
 
-  <div class="modal fade" id="forgot">
+  <div class="modal fade" id="newtask">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss='modal' aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-            <h4 class="modal-title" style="font-size: 24px; padding: 12px;"> Recover Your Password </h4>
+            <h4 class="modal-title" style="font-size: 24px;"> Create New Task </h4>
           </div>
 
           <div class="modal-body">
@@ -135,9 +138,33 @@
                   <div class="form-group">
                     <div class="input-group">
                       <div class="input-group-addon iga2">
+                        <span class="glyphicon glyphicon-user"></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="task_name">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-envelope"></span>
                       </div>
-                      <input type="email" class="form-control" placeholder="EnterYour EMail" name="email">
+                      <input type="email" class="form-control" placeholder="Username" name="username" id="task_username">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon iga2">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Task" name="task" id="task_content">
                     </div>
                   </div>
                 </div>
@@ -147,7 +174,7 @@
 
           <div class="modal-footer">
             <div class="form-group">
-              <button type="submit" data-dismiss="modal" class="btn btn-lg btn-info" id="save"> Save <span class="glyphicon glyphicon-saved"></span></button>
+              <button type="submit" data-dismiss="modal" class="btn btn-lg btn-info btn-success" id="save"> Save <span class="glyphicon glyphicon-saved"></span></button>
               <button type="button" data-dismiss="modal" class="btn btn-lg btn-default" id="cancel"> Cancel <span class="glyphicon glyphicon-remove"></span></button>
             </div>
           </div>

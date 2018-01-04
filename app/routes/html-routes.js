@@ -15,30 +15,14 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    console.log("------------------> main screen 2");
+    console.log("------------------> login screen");
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
 
   // index route loads view.html
   app.get("/tasks", function(req, res) {
-    console.log("------------------> main screen 2");
+    console.log("------------------> task screen");
     res.sendFile(path.join(__dirname, "../public/tasks.html"));
-  });
-
-  // add route loads the add.html page, where users can enter new books to the db
-  app.get("/addtask", function(req, res) {
-    console.log("------------------------------------------------>>>> add atsk")
-    res.sendFile(path.join(__dirname, "../public/task.html"));
-  });
-
-  // all route loads the all.html page, where all books in the db are displayed
-  app.get("/user", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/user.html"));
-  });
-
-  // short route loads the short.html page, where short books in the db are displayed
-  app.get("/group", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/group.html"));
   });
 };

@@ -50,10 +50,8 @@
           var username = $("#username").val().trim();
           var name = $("#name").val().trim();
           var email = $("#email").val().trim();
-          var password1 = $("#password").val().trim();
-          var password2 = $("#confirm-password").val().trim();
+          var password1 = $("#password1").val().trim();
+          var password2 = $("#password2").val().trim();
           var group = $("#group").val().trim();
-          var password = $("#password").val().trim();
-          alert(name);
         });
     });

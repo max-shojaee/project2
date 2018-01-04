@@ -21,6 +21,9 @@ var User = sequelize.define("user", {
   },
   group: {
     type: Sequelize.STRING
+  },
+  picture: {
+    type: Sequelize.STRING
   }
 }, {
   timestamps: false
