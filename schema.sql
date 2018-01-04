@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS `mycirkle`;
+CREATE DATABASE `mycirkle`;

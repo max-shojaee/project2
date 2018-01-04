@@ -1,0 +1,119 @@
+body {
+    padding-top: 10px;
+    font-family: serif;
+    /*background-color: lightblue;*/
+
+    /* background-color: #e0ffff; */
+}
+
+#user .avatar {
+    width:60px;
+   }
+#user .avatar > img{
+   width:50px;
+   height:50px;
+   border-radius:10%;
+   }
+/*Card*/
+#user .panel-thumb{
+margin:5px auto;
+text-align:center;   
+   }
+#user .panel-thumb .avatar-card {
+text-align:center;
+height:200px;
+margin:auto;
+overflow:hidden;
+}  
+#user .panel-thumb .avatar-card > img{
+   max-width:200px;
+   max-height:200px;
+   }
+
+/* table*/
+#user .panel-table{
+  animation-duration:3s;
+}
+
+#user .panel-table .panel-body .table{
+  margin:0px;
+}
+#user .panel-table .panel-body {
+  padding:0px;
+}
+#user .panel-table .panel-body .table-bordered > thead > tr > th{
+  text-align:center;
+}
+#user .panel-table .panel-footer {
+  height:60px;
+  padding:0px;
+}
+
+
+
+
+
+
+.btn-success
+   {
+      transition: 0.5s;
+   }
+
+   .btn-success:hover, .btn-success:focus
+   {
+      background: white;
+      border-color: #5cb85c;
+      color: black;
+      transition: all 0.4s;
+   }
+
+   .btn-warning
+   {
+      transition: 0.5s;
+   }
+
+   .btn-warning:hover, .btn-warning:focus
+   {
+      background: white;
+      color: black;
+      border-color: #f0ad4e;
+   }
+
+   .panel.with-nav-tabs .nav-tabs
+   {
+      border-bottom: none; 
+   }
+   .panel.with-nav-tabs .nav-justified
+   {
+      margin-bottom: -4px;
+   }
+
+   .panel
+   {
+      margin: 7%;
+   }
+
+   .modal-header
+   {
+      background: #FF3838;
+      color: white;
+      text-align: center;
+   }
+
+   .input-group-addon
+   {
+      background-color: #5cb85c;
+      color: white;
+   }
+
+   .iga1
+   {
+      background-color: #f0ad4e;
+      color: white;
+   }
+
+   .iga2
+   {
+      background-color: #FF3838;
+      color: white;
+   }
