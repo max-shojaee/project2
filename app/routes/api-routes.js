@@ -39,6 +39,7 @@ module.exports = function(app) {
           username: req.params.username
         }
       }).then(function(results) {
+        console.log(results);
         res.json(results);
       });
     }

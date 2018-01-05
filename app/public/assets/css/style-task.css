@@ -1,6 +1,35 @@
 body {
     padding-top: 10px;
     font-family: serif;
+    background-color: lightcyan;
+}
+
+#user .avatar {
+    width:60px;
+   }
+#user .avatar > img{
+   width:50px;
+   height:50px;
+   border-radius:10%;
+   }
+
+/* table*/
+#user .panel-table{
+  animation-duration:3s;
+}
+
+#user .panel-table .panel-body .table{
+  margin:0px;
+}
+#user .panel-table .panel-body {
+  padding:0px;
+}
+#user .panel-table .panel-body .table-bordered > thead > tr > th{
+  text-align:center;
+}
+#user .panel-table .panel-footer {
+  height:60px;
+  padding:0px;
 }
 
 .btn-success
