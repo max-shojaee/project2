@@ -114,7 +114,10 @@ module.exports = function(app) {
         username: req.body.username,
         password: req.body.password,
         name: req.body.name,
-        group: req.body.group
+        group: req.body.group,
+        picture: req.body.picture
+    }).then(function(results) {
+      res.json(results);
     });
   });
 
