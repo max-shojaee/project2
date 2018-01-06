@@ -13,104 +13,59 @@ var Group = require("../models/group.js");
 module.exports = function(app) {
 
   app.get("/api", function(req, res) {
-
-    console.log("------------------> /api");
-    /*
-    Task.findAll({}).then(function(results) {
-
-      res.json(results);
-    });
-    */
+    console.log("/api");
   });
 
-  // Get all books
+  // Get all users
+  app.get("/api/allusers", function(req, res) {
+    console.log("/api/allusers")
+    User.findAll({}).then(function(results) {
+      res.json(results);
+    });
+  });
+
+  // Get all tasks
   app.get("/api/all", function(req, res) {
+    console.log("/api/all")
     Task.findAll({}).then(function(results) {
       res.json(results);
     });
   });
 
 
-  // Get a specific book
+  // Get a specific user
   app.get("/api/:username", function(req, res) {
+    console.log("/api/:username")
     if (req.params.username) {
       User.findAll({
         where: {
           username: req.params.username
         }
       }).then(function(results) {
-        console.log(results);
         res.json(results);
       });
     }
   });
 
-  // Get all books of a specific genre
-  app.get("/api/genre/:genre", function(req, res) {
-    /*
-    if (req.params.genre) {
-      Book.findAll({
+
+  // Get a specific task
+  app.get("/api/tasks/:id", function(req, res) {
+    console.log("/api/tasks/:id");
+    console.log(req.params.id)
+    if (req.params.id) {
+      Task.findAll({
         where: {
-          genre: req.params.genre
+          id: req.params.id
         }
       }).then(function(results) {
         res.json(results);
       });
     }
-    */
   });
 
-  // Get all books from a specific author
-  app.get("/api/author/:author", function(req, res) {
-    /*
-    if (req.params.author) {
-      Book.findAll({
-        where: {
-          author: req.params.author
-        }
-      }).then(function(results) {
-        res.json(results);
-      });
-    }
-    */
-  });
-
-  // Get all "long" books (books 300 pages or more)
-  app.get("/api/books/long", function(req, res) {
-    /*
-    Book.findAll({
-      where: {
-        pages: {
-          $gte: 300
-        }
-      },
-      order: [["pages", "DESC"]]
-    }).then(function(results) {
-      res.json(results);
-    });
-    */
-  });
-
-  // Get all "short" books (books 150 pages or less)
-  app.get("/api/books/short", function(req, res) {
-    /*
-    Book.findAll({
-      where: {
-        pages: {
-          $lte: 150
-        }
-      },
-      order: [["pages", "ASC"]]
-    }).then(function(results) {
-      res.json(results);
-    });
-    */
-  });
 
   // Add a user
   app.post("/api/user", function(req, res) {
-    console.log("User:");
-    console.log(req.body);
     User.create({
         username: req.body.username,
         password: req.body.password,
@@ -123,10 +78,8 @@ module.exports = function(app) {
   });
 
 
-  // Add Task
+  // Add a Task
   app.post("/api/task", function(req, res) {
-    console.log("Task:");
-    console.log(req.body);
     Task.create({
         username: req.body.username,
         name: req.body.name,
@@ -138,17 +91,28 @@ module.exports = function(app) {
     });
   });
 
-  // Delete a book
-  app.post("/api/delete", function(req, res) {
-    /*
-    console.log("Book Data:");
-    console.log(req.body);
-    Book.destroy({
+
+   // Update a Task
+  app.post("/api/update/:id", function(req, res) {
+    console.log("/api/update/:id");
+    Task.Update(
+      {task: req.body.task,
+       state: req.body.state,
+       notes: req.body.notes},
+      {where: req.params.id}).then(function(results) {
+      res.json(results);
+    });
+  });
+
+
+  // Delete a Task
+  app.post("/api/delete/:id", function(req, res) {
+    console.log("/api/delete/:id");
+    Task.destroy({
       where: {
         id: req.body.id
       }
     });
-  */
   });
 
 };

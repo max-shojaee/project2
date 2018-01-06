@@ -27,6 +27,15 @@ var Task = sequelize.define("task", {
   },
   state: {
     type: Sequelize.STRING
+  },
+  assigner: {
+    type: Sequelize.STRING
+  },
+  assigner_email: {
+    type: Sequelize.STRING
+  },
+  notes: {
+    type: Sequelize.STRING
   }
 }, {
   timestamps: true

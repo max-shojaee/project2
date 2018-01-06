@@ -26,7 +26,7 @@
                   <!--a href="#list" class="btn btn-default" aria-controls="list" role="tab" data-toggle="tab"><i class="fa fa-list-alt"></i>table</a-->
               </div>
               <div class="col col-xs-4 text-center">
-                  <h1 class="panel-title" style="font-size: 24px">Tasks List</h1>
+                  <h1 class="panel-title" style="font-size: 32px">MyCirkle</h1>
               </div>
               <div class="col col-xs-3 well text-right">    
                   <span class="label label-danger">Filter:</span>
@@ -56,23 +56,23 @@
                 </thead>
                 <tbody>
                   <tr class="progress" value="123">
-                     <td class="avatar"><img src="https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg"></td>
-                     <td>Tim  </td>
-                     <td>Group 1 </td>
-                     <td>tim@gmail.com </td>
-                     <td>This is task 1 assigned to Tim.</td>
+                     <td class="avatar"><img src="assets/images/paul.jpg"></td>
+                     <td>Paul  </td>
+                     <td>Group 3 </td>
+                     <td>paul@gmail.com </td>
+                     <td>Work on all the routers for the project.</td>
                      <td align="center">
-                       <a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a>
+                       <a href="#atask" class="btn btn-primary" id="edit" title="edit"  data-toggle="modal" ><i class="fa fa-pencil fa-2x"></i></a>
                        <a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a>
                        <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a>
                      </td>
                   </tr>
                   <tr class="done">
-                     <td class="avatar"><img src="https://pbs.twimg.com/profile_images/3511252200/f97a40336742d17609e0b0ca17e301b8_400x400.jpeg"></td>
-                     <td>Jerry </td>
-                     <td>Group 2</td>
-                     <td>jerry@gmail.com </td>
-                     <td>This is task 2 assigned to Jerry.</td>
+                     <td class="avatar"><img src="assets/images/jesus.jpg"></td>
+                     <td>Jesus </td>
+                     <td>Group 4 </td>
+                     <td>jesus@gmail.com </td>
+                     <td>Create the ppt for the class project.</td>
                      <td align="center">
                        <a href="#" class="btn btn-primary" id="edit" title="edit"    ><i class="fa fa-pencil fa-2x"></i></a>
                        <a href="#" class="btn btn-success" title="done"	 ><i class="fa fa-check-square fa-2x"></i></a>
@@ -80,28 +80,28 @@
                      </td>
                 </tr>
                 <tr class="new">
-                   <td class="avatar"><img src="https://pbs.twimg.com/profile_images/3023221270/fcb34337f850c1037af9840ebe510d36_400x400.jpeg"></td>
-                   <td>CJ  </td>
-                   <td>Group 1</td>
-                   <td>cj@gmail.com </td>
-                   <td>This is task 3 assigned to CJ.</td>
+                   <td class="avatar"><img src="assets/images/majid.jpg"></td>
+                   <td>Majid  </td>
+                   <td>Group 1 </td>
+                   <td>majid@gmail.com </td>
+                   <td>Integrate all sources files. </td>
                    <td align="center">
                      <a href="#" class="btn btn-primary" id="edit" title="Edit"    ><i class="fa fa-pencil fa-2x"></i></a>
               	     <a href="#" class="btn btn-warning" title="new"><i class="fa fa-list-alt fa-2x"></i></a>
                      <a href="#" class="btn btn-danger"  id="delete" title="delete"  ><i class="fa fa-trash fa-2x"></i></a>
                     </td>
                   </tr>
-                  <tr class="progress">
-                     <td class="avatar"><img src="https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg"></td>
-                     <td>Tim  </td>
-                     <td>Group 3 </td>
-                     <td>tim@gmail.com </td>
-                     <td>This is task 4 assigned to Tim.</td>
-                     <td align="center">
-                       <a href="#" class="btn btn-primary" id="edit" title="edit"  ><i class="fa fa-pencil fa-2x"></i></a>
-                       <a href="#" class="btn btn-info" title="progress"   ><i class="fa fa-spinner fa-pulse fa-2x fa-fw"   ></i></a>
-                       <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a>
-                     </td>
+                  <tr class="new">
+                   <td class="avatar"><img src="assets/images/aram.jpg"></td>
+                   <td>Aram  </td>
+                   <td>Group 2 </td>
+                   <td>aram@gmail.com </td>
+                   <td>Implement enhancements for the task list. </td>
+                   <td align="center">
+                     <a href="#" class="btn btn-primary" id="edit" title="Edit"    ><i class="fa fa-pencil fa-2x"></i></a>
+                     <a href="#" class="btn btn-warning" title="new"><i class="fa fa-list-alt fa-2x"></i></a>
+                     <a href="#" class="btn btn-danger"  id="delete" title="delete"  ><i class="fa fa-trash fa-2x"></i></a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -147,7 +147,7 @@
                     <div class="input-group">
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-envelope"></span>
-                      </div>
+                      </div>                          
                       <input type="text" class="form-control" placeholder="Email" name="assigner" id="assigner_email">
                     </div>
                   </div>
@@ -161,7 +161,7 @@
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-user"></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Assignee's Name" name="name" id="task_name">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="task_name">
                     </div>
                   </div>
                 </div>
@@ -173,7 +173,9 @@
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-envelope"></span>
                       </div>
-                      <input type="email" class="form-control" placeholder="Assignee's Email" name="username" id="task_username">
+                      <select type="email" class="form-control" placeholder="Email" name="username" id="task_username">
+                      </select>        
+                      <!--input type="email" class="form-control" placeholder="Assignee's Email" name="username" id="task_username"-->
                     </div>
                   </div>
                 </div>
@@ -203,17 +205,29 @@
       </div>
   </div>
 
-
   <div class="modal fade" id="atask">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss='modal' aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
-            <h4 class="modal-title" style="font-size: 24px;"> Create New Task </h4>
+            <h4 class="modal-title" style="font-size: 24px;"> Update Task </h4>
           </div>
-
           <div class="modal-body">
             <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <label for="name">Assigner</label>
+                    <div class="input-group">
+                      <div class="input-group-addon iga2">
+                        <span class="glyphicon glyphicon-user"></span>
+                      </div>
+                      <input type="text" class="form-control" placeholder="Assigner" name="assigner" id="tu_assigner">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br><br>
               <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                   <div class="form-group">
@@ -221,7 +235,7 @@
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-user"></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Name" name="name" id="task_name">
+                      <input type="text" class="form-control" placeholder="Name" name="name" id="tu_task_name">
                     </div>
                   </div>
                 </div>
@@ -233,7 +247,35 @@
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-envelope"></span>
                       </div>
-                      <input type="email" class="form-control" placeholder="Username" name="username" id="task_username">
+                      <input type="email" class="form-control" placeholder="Email" name="username" id="tu_task_username">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon iga2">
+                        <span class="glyphicon glyphicon-forward"></span>
+                      </div>
+                      <select type="email" class="form-control" placeholder="State" name="state" id="tu_state">
+                          <option value="new">NEW</option>
+                          <option value="progress">PROGRESS</option>
+                          <option value="done">DONE</option>
+                      </select>        
+                    </div>
+                  </div>
+                </div>
+              </div>              
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-addon iga2">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                      </div>
+                      <textarea type="text" class="form-control" placeholder="Task" name="task" id="tu_task_content" style="height: 50px;"></textarea>
                     </div>
                   </div>
                 </div>
@@ -245,7 +287,7 @@
                       <div class="input-group-addon iga2">
                         <span class="glyphicon glyphicon-pencil"></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Task" name="task" id="task_content">
+                      <textarea type="text" class="form-control" placeholder="Notes" name="notes" id="tu_notes" style="height: 50px;"></textarea>
                     </div>
                   </div>
                 </div>
@@ -255,14 +297,13 @@
 
           <div class="modal-footer">
             <div class="form-group">
-              <button type="submit" data-dismiss="modal" class="btn btn-lg btn-info btn-success" id="save"> Save <span class="glyphicon glyphicon-saved"></span></button>
+              <button type="submit" data-dismiss="modal" class="btn btn-lg btn-info btn-success" id="tu_save"> Save <span class="glyphicon glyphicon-saved"></span></button>
               <button type="button" data-dismiss="modal" class="btn btn-lg btn-default" id="cancel"> Cancel <span class="glyphicon glyphicon-remove"></span></button>
             </div>
           </div>
         </div>
       </div>
   </div>
-
 
   <script src="js/tasks.js" type="text/javascript"></script>
 

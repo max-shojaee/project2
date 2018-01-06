@@ -100,7 +100,7 @@ $("#register-submit").click(function(e){
                     // Send an AJAX POST-request with jQuery
                     $.post("/api/user", newUser).done(function(data) {
                       // Log the data we found
-                      console.log(data);
+                      //console.log(data);
                       $("#username").val(username);
                    });
                 }
