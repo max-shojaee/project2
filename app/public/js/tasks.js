@@ -263,7 +263,7 @@ $(document).on('click', '#tu_save', function(e){
 
         var i = $('#tasks tr').length;
 
-        while(i>1)
+        while(i>1)   
         {
           document.getElementById("tasks").deleteRow(i-1);
           i--;
