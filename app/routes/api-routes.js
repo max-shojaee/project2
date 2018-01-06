@@ -93,16 +93,22 @@ module.exports = function(app) {
 
 
    // Update a Task
-  app.post("/api/update/:id", function(req, res) {
-    console.log("/api/update/:id");
-    Task.Update(
-      {task: req.body.task,
-       state: req.body.state,
-       notes: req.body.notes},
-      {where: req.params.id}).then(function(results) {
-      res.json(results);
+    app.post("/api/update", function(req, res) {
+      console.log("/api/update/:id");
+      // Update takes in an object describing the properties we want to update, and
+      // we use where to describe which objects we want to update
+      Task.update({
+         task: req.body.task,
+         state: req.body.state,
+         notes: req.body.notes
+      },{
+        where: {
+          id: req.body.id
+        }
+      }).then(function(results) {
+        res.json(results);
+      });
     });
-  });
 
 
   // Delete a Task
@@ -110,8 +116,10 @@ module.exports = function(app) {
     console.log("/api/delete/:id");
     Task.destroy({
       where: {
-        id: req.body.id
+        id: req.params.id
       }
+    }).then(function(results) {
+      res.json(results);
     });
   });
 

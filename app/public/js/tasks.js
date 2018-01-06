@@ -1,13 +1,27 @@
-var taskid = 1;
-
 //====================================================================================
 //$( document ).ready()
 //====================================================================================
-
 $( document ).ready(function() {
+  getAllTasks();
+});
+
+//====================================================================================
+// getAllTasks()
+//====================================================================================
+function getAllTasks() {
 
    $.get("/api/all").done(function(data) {
 
+/*
+    $("#tasks").find('tbody').append($("<thead>").append($("<tr>"))
+                             .append($("<th>Owner").attr("class", "avatar"))
+                             .append($("<th>Name").attr("onclick","sortTable(1)"))
+                             .append($("<th>Group").attr("onclick","sortTable(2)"))
+                             .append($("<th>Email").attr("onclick","sortTable(3)"))
+                             .append($("<th>Task"))
+                             .append($("<th><em>"))
+                             );
+*/
         for (var i=0; i< data.length; i++)
         {
           var icon_type;
@@ -29,7 +43,7 @@ $( document ).ready(function() {
             icon_type = '<td align="center"><a href="#atask" class="btn btn-primary" id="edit" title="edit"  data-toggle="modal"><i class="fa fa-pencil fa-2x"></i></a> <a href="#" class="btn btn-success" title="done"   ><i class="fa fa-check-square fa-2x"   ></i></a> <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'
           }    
 
-          var picture = getPicture(data[i].name);
+          var picture = getPicture(data[i].name.toLowerCase());
 
           $("#tasks").find('tbody').append($(state_type).attr("value", data[i].id)
             .append($('<td>').attr("class", "avatar").append($('<img>').attr('src', picture)))
@@ -43,7 +57,7 @@ $( document ).ready(function() {
         }
     });
 
-});
+}
 
 //========================================================================
 // getPicture() temp function
@@ -51,19 +65,20 @@ $( document ).ready(function() {
 function getPicture(name)
 {
   var picture="";
+
   switch(name)
   {
-    case "Paul":
-      pitcure = "../assets/images/paul.jpg"
+    case "paul":
+      picture = "../assets/images/paul.jpg"
       break;
-    case "Jesus":
-      pitcure = "../assets/images/jesus.jpg"
+    case "jesus":
+      picture = "../assets/images/jesus.jpg"
       break;
-    case "Majid":
-      pitcure = "../assets/images/majid.jpg"
+    case "majid":
+      picture = "../assets/images/majid.jpg"
       break;
-    case "Aram":
-      pitcure = "../assets/images/aram.jpg"
+    case "aram":
+      picture = "../assets/images/aram.jpg"
       break;
     default:
       picture = "../assets/images/icon.jpg"
@@ -113,9 +128,6 @@ $(document).on('click', '#addnew', function(e){
     $("#assigner").val(assigner);
     $("#assigner_email").val(assigner_email);
 
-    console.log(assigner);
-    console.log(assigner_email);
-
     $.get("/api/allusers").done(function(data) {
 
         for (var i=0; i< data.length; i++)
@@ -129,7 +141,10 @@ $(document).on('click', '#addnew', function(e){
 //========================================================================
 // Save new task
 //========================================================================
-$(document).on('click', '#save', function(){
+$(document).on('click', '#save', function(e){
+
+      e.preventDefault();
+
       var username = $("#task_username").val().trim();
       username = username.toLowerCase();
       var name = $("#task_name").val().trim();
@@ -138,6 +153,7 @@ $(document).on('click', '#save', function(){
 
       var assigner = $("#assigner").val().trim();
       var assigner_email = $("#assigner_email").val().trim();
+      var notes = " ";
               
       var newTask = {
         username: username,
@@ -146,7 +162,8 @@ $(document).on('click', '#save', function(){
         task: task,
         state: "new",
         assigner: assigner,
-        assigner_email: assigner_email
+        assigner_email: assigner_email,
+        notes: notes
       };
 
       // Send an AJAX POST-request with jQuery
@@ -163,7 +180,7 @@ $(document).on('click', '#save', function(){
           //$("state_type").attr("value", data.id);
           //console.log(state_type.attr("value"));
 
-          var picture = getPicture(data.name);
+          var picture = getPicture(data.name.toLowerCase());
 
           $("#tasks").find('tbody').append($(state_type).attr("value", data.id)
             .append($('<td>').attr("class", "avatar").append($('<img>').attr('src', picture)))
@@ -175,6 +192,13 @@ $(document).on('click', '#save', function(){
             .append($('<td>').text(data.task))
             .append($(icon_type))
           );
+
+          $("#task_username").val("");
+          $("#task_name").val("");
+          $("#task_content").val("");
+          $("#assigner").val("");
+          $("#assigner_email").val("");
+          $("#task_username option").remove(); 
       });
 });
 
@@ -182,20 +206,25 @@ $(document).on('click', '#save', function(){
 //===========================================================================
 // Edit task
 //===========================================================================
-$(document).on('click', '#edit', function(){
+$(document).on('click', '#edit', function(e){
+
+    e.preventDefault();
 
     var i = $(this).parents('tr').index();
     console.log(i);
     var id = $(this).parents('tr').attr("value");
     console.log(id);
 
-    taskid = id;
+    var assigner = localStorage.getItem("name");
+    var assigner_email = localStorage.getItem("username");
+    localStorage.setItem("taskid", id);
+    
 
     $.get("/api/tasks/" + id).done(function(data) {
-        console.log(data);
+
         if (data.length) 
         {
-          $("#tu_assigner").val("Name: " + data[0].assigner + "   Email: "+ data[0].assigner_email);
+          $("#tu_assigner").val("Name: " + assigner + "   Email: "+ assigner_email);
           $("#tu_task_name").val(data[0].name);
           $("#tu_task_username").val(data[0].username);
           $("#tu_state").val(data[0].state);
@@ -208,37 +237,40 @@ $(document).on('click', '#edit', function(){
 //========================================================================
 // Update Task
 //========================================================================
-$(document).on('click', '#tu_save', function(){
+$(document).on('click', '#tu_save', function(e){
 
-      var id = $(this).parents('tr').attr("value");
-      console.log(id);
+      e.preventDefault();
 
-      id = taskid;
-
+      var username = $("#tu_task_username").val().trim();
+      username = username.toLowerCase();
+      var name = $("#tu_task_name").val().trim();
+      var group = "Group 1";
       var state = $("#tu_state").val().trim();
       var task = $("#tu_task_content").val().trim();
       var notes = $("#tu_notes").val().trim();
-              
-      $.get("/api/tasks/" + id).done(function(data) {
 
-        if (data.length) 
-        {
-            var task = {
-                //username: data[0].username,
-                //name: data[0].name,
-                //group: data[0].group,
+      id = localStorage.getItem("taskid");
+
+      var updatedTask = {
+                id: id,
                 task: task,
                 state: state,
-                //assigner: data[0].assigner,
-                //assigner_email: data[0].assigner_email,
                 notes: notes
-            };
+      };
 
-            // Send an AJAX POST-request with jQuery
-            $.post("/api/update/"+id, task).done(function(data) {
-            });
-        }
-        
+      // Send an AJAX POST-request with jQuery
+      $.post("/api/update/", updatedTask).done(function(data) {   
+
+        var i = $('#tasks tr').length;
+
+        while(i>1)
+        {
+          document.getElementById("tasks").deleteRow(i-1);
+          i--;
+          //$("#tasks tr#"+i).remove(); 
+        }  
+        //$("#tasks tr").remove(); 
+        getAllTasks();
       });
 });
 
@@ -246,14 +278,17 @@ $(document).on('click', '#tu_save', function(){
 //===========================================================================
 // Delete task
 //===========================================================================
-$(document).on('click', '#delete', function(){
-    console.log("delete pressed");
+$(document).on('click', '#delete', function(e){
+
+    e.preventDefault();
+
     var id = $(this).parents('tr').attr("value");
     console.log(id);
                   
     $.post("/api/delete/" +id).done(function(data) {
-        $(this).parents('tr').remove();
     });
+
+    $(this).parents('tr').remove();
                       
 });
 
