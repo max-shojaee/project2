@@ -15,14 +15,12 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    console.log("------------------> login screen");
     res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
 
   // index route loads view.html
   app.get("/tasks", function(req, res) {
-    console.log("------------------> task screen");
     res.sendFile(path.join(__dirname, "../public/tasks.html"));
   });
 };

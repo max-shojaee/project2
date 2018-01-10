@@ -2,26 +2,15 @@
 //$( document ).ready()
 //====================================================================================
 $( document ).ready(function() {
-  getAllTasks();
+  refreshTasks();
 });
 
 //====================================================================================
 // getAllTasks()
 //====================================================================================
-function getAllTasks() {
+function refreshTasks() {
 
    $.get("/api/all").done(function(data) {
-
-/*
-    $("#tasks").find('tbody').append($("<thead>").append($("<tr>"))
-                             .append($("<th>Owner").attr("class", "avatar"))
-                             .append($("<th>Name").attr("onclick","sortTable(1)"))
-                             .append($("<th>Group").attr("onclick","sortTable(2)"))
-                             .append($("<th>Email").attr("onclick","sortTable(3)"))
-                             .append($("<th>Task"))
-                             .append($("<th><em>"))
-                             );
-*/
         for (var i=0; i< data.length; i++)
         {
           var icon_type;
@@ -47,7 +36,6 @@ function getAllTasks() {
 
           $("#tasks").find('tbody').append($(state_type).attr("value", data[i].id)
             .append($('<td>').attr("class", "avatar").append($('<img>').attr('src', picture)))
-            //.append($('<td class="avatar">').append($('<img>').attr('src', picture)))
             .append($('<td>').text(data[i].name))
             .append($('<td>').text(data[i].group))
             .append($('<td>').text(data[i].username))
@@ -64,26 +52,7 @@ function getAllTasks() {
 //========================================================================
 function getPicture(name)
 {
-  var picture="";
-
-  switch(name)
-  {
-    case "paul":
-      picture = "../assets/images/paul.jpg"
-      break;
-    case "jesus":
-      picture = "../assets/images/jesus.jpg"
-      break;
-    case "majid":
-      picture = "../assets/images/majid.jpg"
-      break;
-    case "aram":
-      picture = "../assets/images/aram.jpg"
-      break;
-    default:
-      picture = "../assets/images/icon.jpg"
-      break;
-  }
+  var picture="http://moziru.com/images/brotherhood-clipart-business-collaboration-20.jpg";
   return picture;
 }
 
@@ -177,15 +146,10 @@ $(document).on('click', '#save', function(e){
           var icon_type = '<td align="center"><a href="#atask" class="btn btn-primary" id="edit" title="edit"  data-toggle="modal"><i class="fa fa-pencil fa-2x"></i></a> <a href="#" class="btn btn-warning" title="new"   ><i class="fa fa-list-alt fa-2x"   ></i></a> <a href="#" class="btn btn-danger" id="delete" title="delete"><i class="fa fa-trash fa-2x" ></i></a></td>'
           
 
-          //$("state_type").attr("value", data.id);
-          //console.log(state_type.attr("value"));
-
           var picture = getPicture(data.name.toLowerCase());
 
           $("#tasks").find('tbody').append($(state_type).attr("value", data.id)
             .append($('<td>').attr("class", "avatar").append($('<img>').attr('src', picture)))
-            //.attr("class", "avatar")
-            //.append($('<img>').attr('src', "https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg")))
             .append($('<td>').text(data.name))
             .append($('<td>').text(data.group))
             .append($('<td>').text(data.username))
@@ -267,10 +231,8 @@ $(document).on('click', '#tu_save', function(e){
         {
           document.getElementById("tasks").deleteRow(i-1);
           i--;
-          //$("#tasks tr#"+i).remove(); 
         }  
-        //$("#tasks tr").remove(); 
-        getAllTasks();
+        refreshTasks();
       });
 });
 
@@ -350,30 +312,3 @@ function sortTable(n) {
         }
       }
 }
-
-
-//===========================================================================
-// unused code 
-//===========================================================================
-/*
-$("#delete").click(function(){
-              console.log("delete");
-              $(this).parents('tr').remove();
-});
-
-$(document).on('click', '#save', function(){
-        console.log("save pressed");
-});
-
-$("#save").click(function(){
-      alert("save");
-}
-
-$("#cancel").click(function(){
-      alert("cancel");
-}
-
-$("#addnew").click(function(){
-
-});
-*/

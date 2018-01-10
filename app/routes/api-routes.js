@@ -12,10 +12,6 @@ var Group = require("../models/group.js");
 // =============================================================
 module.exports = function(app) {
 
-  app.get("/api", function(req, res) {
-    console.log("/api");
-  });
-
   // Get all users
   app.get("/api/allusers", function(req, res) {
     console.log("/api/allusers")

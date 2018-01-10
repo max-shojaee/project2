@@ -18,9 +18,6 @@ $('#login-form-link').click(function(e) {
 $('#register-form-link').click(function(e) {
               $("#register").delay(100).fadeIn(100);
               $("#login").fadeOut(100);
-              //$('#login-form-link').removeClass('active');
-              //$("#register").addClass('active');
-              //$(this).addClass('active');
               e.preventDefault();
 });
 
@@ -93,14 +90,12 @@ $("#register-submit").click(function(e){
                                   password: password1,
                                   name: name,
                                   group: group,
-                                  picture: "https://pbs.twimg.com/profile_images/746779035720683521/AyHWtpGY_400x400.jpg"
+                                  picture: "http://moziru.com/images/brotherhood-clipart-business-collaboration-20.jpg"
                                 };
 
 
                     // Send an AJAX POST-request with jQuery
                     $.post("/api/user", newUser).done(function(data) {
-                      // Log the data we found
-                      //console.log(data);
                       $("#username").val(username);
                    });
                 }
